@@ -1,5 +1,6 @@
 """
-Main entry point for gSort Professional.
+Entry point for gSort Professional.
+Updates main.py to include research features.
 """
 
 import sys
@@ -12,6 +13,7 @@ from PyQt5.QtWidgets import QApplication, QStyleFactory
 from PyQt5.QtCore import Qt, QCoreApplication
 
 from gsort.ui.main_window import MainWindow
+from gsort.ui.research_features import add_research_menu
 from gsort import __version__
 
 
@@ -131,6 +133,11 @@ def main():
     
     # Create main window
     window = MainWindow()
+    
+    # Add research features
+    add_research_menu(window)
+    
+    # Show the window
     window.show()
     
     # Handle files to open at startup
