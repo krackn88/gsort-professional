@@ -74,7 +74,7 @@ def show_password_evolution_dialog(main_window):
     
     dialog = PasswordEvolutionDialog(main_window.combos, main_window)
     
-    if dialog.exec_() == PasswordEvolutionDialog.Accepted and dialog.evolved_combos:
+    if dialog.exec() == PasswordEvolutionDialog.Accepted and dialog.evolved_combos:
         # Update combos with evolved versions
         main_window.combos = dialog.evolved_combos
         main_window.update_combo_display()
