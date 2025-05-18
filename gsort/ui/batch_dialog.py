@@ -6,13 +6,13 @@ Allows applying multiple operations to combos in sequence.
 import logging
 from typing import List, Dict, Any, Optional
 
-from PyQt5.QtWidgets import (
+from PyQt6.QtWidgets import (
     QDialog, QVBoxLayout, QHBoxLayout, QFormLayout, QLabel, 
     QSpinBox, QLineEdit, QPushButton, QComboBox, QListWidget,
     QWidget, QGroupBox, QRadioButton, QButtonGroup, QCheckBox,
-    QListWidgetItem, QMessageBox
+    QListWidgetItem, QMessageBox, QProgressBar, QFileDialog
 )
-from PyQt5.QtCore import Qt, QSize
+from PyQt6.QtCore import Qt, QSize
 
 from gsort.core.processor import ComboProcessor
 

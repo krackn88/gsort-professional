@@ -11,14 +11,14 @@ import threading
 from typing import List, Dict, Optional, Any
 from datetime import datetime
 
-from PyQt5.QtWidgets import (
-    QMainWindow, QApplication, QToolBar, QAction, QToolButton, QMenu,
+from PyQt6.QtWidgets import (
+    QMainWindow, QApplication, QToolBar, QToolButton, QMenu,
     QTextEdit, QFileDialog, QMessageBox, QInputDialog, QDialog, QDockWidget,
     QStatusBar, QProgressBar, QVBoxLayout, QHBoxLayout, QWidget, QLabel,
     QComboBox, QSplitter, QTabWidget
 )
-from PyQt5.QtGui import QIcon, QFont, QKeySequence, QTextCursor, QPixmap
-from PyQt5.QtCore import Qt, QSettings, QSize, QThread, pyqtSignal, QTimer
+from PyQt6.QtGui import QIcon, QFont, QKeySequence, QTextCursor, QPixmap, QAction
+from PyQt6.QtCore import Qt, QSettings, QSize, QThread, pyqtSignal, QTimer, QEvent
 
 from qt_material import apply_stylesheet
 
@@ -68,6 +68,10 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         
+        # Set a normalized, readable default application font
+        app_font = QFont("Consolas", 14)
+        QApplication.setFont(app_font)
+        
         # Setup logging
         self.log_queue = queue.Queue()
         self.logger = logging.getLogger(__name__)
@@ -83,7 +87,7 @@ class MainWindow(QMainWindow):
         
         # Set window properties
         self.setWindowTitle("gSort Professional")
-        self.resize(1200, 800)
+        self.showMaximized()
         
         # Start the log polling timer
         self.log_timer = QTimer()
@@ -109,13 +113,12 @@ class MainWindow(QMainWindow):
     def _init_ui(self):
         """Initialize UI components"""
         # Set up central splitter
-        self.central_splitter = QSplitter(Qt.Horizontal)
+        self.central_splitter = QSplitter(Qt.Orientation.Horizontal)
         self.setCentralWidget(self.central_splitter)
         
         # Text area for combo preview
         self.text_area = QTextEdit()
         self.text_area.setReadOnly(True)
-        self.text_area.setFont(QFont("Consolas", 10))
         self.text_area.setPlaceholderText("Load combo files to begin processing...")
         
         # Analytics view (right side)
@@ -126,6 +129,7 @@ class MainWindow(QMainWindow):
         self.central_splitter.addWidget(self.analytics_view)
         self.central_splitter.setStretchFactor(0, 1)
         self.central_splitter.setStretchFactor(1, 2)
+        self.central_splitter.setHandleWidth(8)
         
         # Status bar with progress
         self.status_bar = QStatusBar()
@@ -148,7 +152,6 @@ class MainWindow(QMainWindow):
         
         self.log_widget = QTextEdit()
         self.log_widget.setReadOnly(True)
-        self.log_widget.setFont(QFont("Consolas", 9))
         self.log_widget.setMaximumHeight(150)
         
         self.log_dock.setWidget(self.log_widget)
@@ -159,6 +162,12 @@ class MainWindow(QMainWindow):
         
         # Create menus
         self._create_menus()
+        
+        # Add spacing and margins for a modern look
+        self.setContentsMargins(16, 16, 16, 16)
+        self.centralWidget().setContentsMargins(8, 8, 8, 8)
+        self.status_bar.setContentsMargins(8, 4, 8, 4)
+        self.main_toolbar.setContentsMargins(8, 4, 8, 4)
     
     def _create_toolbars(self):
         """Create application toolbars"""
@@ -404,7 +413,7 @@ class MainWindow(QMainWindow):
             self
         )
         
-        if dialog.exec_() == QDialog.Accepted:
+        if dialog.exec() == QDialog.Accepted:
             # Get values from dialog
             self.preview_count = dialog.preview_count
             self.thread_count = dialog.thread_count
@@ -798,7 +807,7 @@ class MainWindow(QMainWindow):
             return
         
         dialog = FilterDialog(FilterDialog.TYPE_PASSWORD_LENGTH)
-        if dialog.exec_() != QDialog.Accepted:
+        if dialog.exec() != QDialog.Accepted:
             return
         
         min_length = dialog.min_value
@@ -1080,7 +1089,7 @@ class MainWindow(QMainWindow):
             msg_box.setWindowTitle("Domain Statistics")
             msg_box.setText(stats_text)
             msg_box.setDetailedText("\n".join([f"{domain}: {count}" for domain, count in stats_list]))
-            msg_box.exec_()
+            msg_box.exec()
             
             self.status_bar.showMessage("Domain statistics generated")
         except Exception as e:
@@ -1102,7 +1111,7 @@ class MainWindow(QMainWindow):
             return
         
         dialog = BatchOperationsDialog(self.combos)
-        if dialog.exec_() == QDialog.Accepted and dialog.processed_combos:
+        if dialog.exec() == QDialog.Accepted and dialog.processed_combos:
             # Update combos
             self.combos = dialog.processed_combos
             self.update_combo_display()
@@ -1162,6 +1171,11 @@ class MainWindow(QMainWindow):
         
         QMessageBox.about(self, "About gSort Professional", about_text)
 
+    def event(self, event):
+        if customEventHandler(self, event):
+            return True
+        return super().event(event)
+
 
 # Custom event for analysis completion
 class AnalysisCompletedEvent(QEvent):
@@ -1192,7 +1206,3 @@ def customEventHandler(self, event):
         self.analysis_error(event.error_msg)
         return True
     return False
-
-
-# Add the event handler to QMainWindow
-QMainWindow.event = lambda self, event: customEventHandler(self, event) or QMainWindow.event(self, event)

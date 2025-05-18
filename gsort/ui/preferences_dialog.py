@@ -3,11 +3,11 @@ Preferences dialog for gSort Professional.
 """
 
 import logging
-from PyQt5.QtWidgets import (
+from PyQt6.QtWidgets import (
     QDialog, QVBoxLayout, QHBoxLayout, QFormLayout, QLabel, 
     QSpinBox, QCheckBox, QPushButton, QComboBox
 )
-from PyQt5.QtCore import Qt
+from PyQt6.QtCore import Qt
 
 
 class PreferencesDialog(QDialog):

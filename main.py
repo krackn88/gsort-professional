@@ -9,12 +9,14 @@ import logging
 import argparse
 from typing import List, Optional
 
-from PyQt5.QtWidgets import QApplication, QStyleFactory
-from PyQt5.QtCore import Qt, QCoreApplication
+from PyQt6.QtWidgets import QApplication, QStyleFactory
+from PyQt6.QtCore import Qt, QCoreApplication
+from PyQt6.QtGui import QFont
 
 from gsort.ui.main_window import MainWindow
 from gsort.ui.research_features import add_research_menu
 from gsort import __version__
+from qt_material import apply_stylesheet
 
 
 def setup_logging(log_file: Optional[str] = None, debug: bool = False):
@@ -127,9 +129,13 @@ def main():
     else:
         app.setStyle("Fusion")  # Default to Fusion style
     
-    # Set high DPI scaling
-    app.setAttribute(Qt.AA_EnableHighDpiScaling, True)
-    app.setAttribute(Qt.AA_UseHighDpiPixmaps, True)
+    # Apply qt-material theme and modern font
+    apply_stylesheet(app, theme='dark_cyan.xml')
+    # Use Segoe UI 18pt for readability, fallback to Arial
+    font = QFont('Segoe UI', 18)
+    if not font.exactMatch():
+        font = QFont('Arial', 18)
+    app.setFont(font)
     
     # Create main window
     window = MainWindow()
@@ -147,7 +153,7 @@ def main():
         # This would be handled by the main window
     
     # Run the application
-    return app.exec_()
+    return app.exec()
 
 
 if __name__ == "__main__":

@@ -6,9 +6,10 @@ This module adds research-oriented menu and functionality.
 import logging
 from typing import List, Dict, Any, Optional
 
-from PyQt5.QtWidgets import (
-    QMenu, QAction, QMessageBox
+from PyQt6.QtWidgets import (
+    QMenu, QMessageBox
 )
+from PyQt6.QtGui import QAction
 
 from gsort.ui.evolution_dialog import PasswordEvolutionDialog
 

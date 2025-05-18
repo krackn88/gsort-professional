@@ -1,5 +1,5 @@
 # Core dependencies
-PyQt5>=5.15.9
+PyQt6>=5.15.9
 pandas>=2.0.0
 numpy>=1.24.0
 matplotlib>=3.7.1

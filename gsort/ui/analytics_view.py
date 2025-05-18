@@ -11,12 +11,12 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 
-from PyQt5.QtWidgets import (
+from PyQt6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QLabel, QTabWidget, QScrollArea,
     QSplitter, QTextEdit, QComboBox, QPushButton, QFileDialog, QApplication
 )
-from PyQt5.QtCore import Qt, QSize
-from PyQt5.QtGui import QFont, QPixmap, QImage
+from PyQt6.QtCore import Qt, QSize
+from PyQt6.QtGui import QFont, QPixmap, QImage
 
 from gsort.analytics.analyzer import AnalyticsResult
 
@@ -48,14 +48,14 @@ class AnalyticsView(QWidget):
         # Tab widget to show different analysis results
         self.tab_widget = QTabWidget()
         self.tab_widget.setDocumentMode(True)
-        self.tab_widget.setTabPosition(QTabWidget.North)
+        self.tab_widget.setTabPosition(QTabWidget.TabPosition.North)
         
         # Add a welcome tab
         self.welcome_tab = QWidget()
         welcome_layout = QVBoxLayout(self.welcome_tab)
         
         welcome_label = QLabel("Welcome to the Analytics Dashboard")
-        welcome_label.setAlignment(Qt.AlignCenter)
+        welcome_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         welcome_label.setFont(QFont("Segoe UI", 14))
         
         instructions_label = QLabel(
@@ -66,7 +66,7 @@ class AnalyticsView(QWidget):
             "• Pattern detection\n"
             "• Email-password correlation analysis"
         )
-        instructions_label.setAlignment(Qt.AlignCenter)
+        instructions_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         instructions_label.setFont(QFont("Segoe UI", 11))
         
         welcome_layout.addStretch()
@@ -135,7 +135,7 @@ class AnalyticsView(QWidget):
         layout.addWidget(description_label)
         
         # Add a splitter to divide summary and figures
-        splitter = QSplitter(Qt.Vertical)
+        splitter = QSplitter(Qt.Orientation.Vertical)
         layout.addWidget(splitter)
         
         # Add summary text

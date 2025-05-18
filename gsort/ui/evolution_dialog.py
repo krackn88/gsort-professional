@@ -6,13 +6,13 @@ Allows users to generate evolved password combinations.
 import logging
 from typing import List, Dict, Optional
 
-from PyQt5.QtWidgets import (
+from PyQt6.QtWidgets import (
     QDialog, QVBoxLayout, QHBoxLayout, QFormLayout, QLabel, 
     QSpinBox, QRadioButton, QButtonGroup, QGroupBox,
     QPushButton, QComboBox, QProgressBar, QMessageBox,
     QCheckBox
 )
-from PyQt5.QtCore import Qt, QThread, pyqtSignal
+from PyQt6.QtCore import Qt, QThread, pyqtSignal
 
 from gsort.core.password_evolution import PasswordEvolutionSimulator
 
