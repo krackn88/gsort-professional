@@ -1,6 +1,5 @@
 # Core dependencies
 PyQt5>=5.15.9
-PySide6>=6.5.0  # For modern Material UI components
 pandas>=2.0.0
 numpy>=1.24.0
 matplotlib>=3.7.1
@@ -29,10 +28,7 @@ colorama>=0.4.6  # For colored terminal output
 psutil>=5.9.5    # For system resource monitoring
 python-dateutil>=2.8.2
 
-# Application packaging
-pyinstaller>=5.10.1  # For creating standalone executables
-
 # Development tools
-pytest>=7.3.1
-black>=23.3.0
-pylint>=2.17.4
+pyinstaller>=5.10.1  # For creating standalone executables
+pytest>=7.3.1       # For testing
+black>=23.3.0       # For code formatting
