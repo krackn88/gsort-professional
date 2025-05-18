@@ -1,0 +1,38 @@
+# Core dependencies
+PyQt5>=5.15.9
+PySide6>=6.5.0  # For modern Material UI components
+pandas>=2.0.0
+numpy>=1.24.0
+matplotlib>=3.7.1
+
+# UI enhancements
+qt-material>=2.14  # Modern Material Design for Qt
+pillow>=9.5.0  # For image processing
+
+# Performance optimizations
+pyarrow>=12.0.0  # For faster DataFrame operations
+joblib>=1.2.0   # For parallel processing
+
+# Data visualization
+seaborn>=0.12.2
+plotly>=5.14.1
+
+# Export options
+openpyxl>=3.1.2  # For Excel export
+tabulate>=0.9.0  # For pretty table formatting
+pdfkit>=1.0.0    # For PDF reports
+weasyprint>=59.0  # For HTML to PDF conversion
+
+# Utilities
+tqdm>=4.65.0     # For progress bars
+colorama>=0.4.6  # For colored terminal output
+psutil>=5.9.5    # For system resource monitoring
+python-dateutil>=2.8.2
+
+# Application packaging
+pyinstaller>=5.10.1  # For creating standalone executables
+
+# Development tools
+pytest>=7.3.1
+black>=23.3.0
+pylint>=2.17.4
