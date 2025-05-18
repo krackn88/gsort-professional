@@ -2,9 +2,9 @@
 
 ![gSort Professional](resources/images/gsort_banner.png)
 
-**High-performance email:password combo processor with advanced analytics**
+**High-performance email:password combo processor with advanced analytics and research features**
 
-gSort Professional is a specialized tool for data analysts and researchers who need to process and analyze large collections of email:password combinations. With lightning-fast processing speeds and comprehensive analysis tools, gSort Professional delivers insights that would be impossible to extract manually.
+gSort Professional is a specialized tool for data analysts and researchers who need to process and analyze large collections of email:password combinations. With lightning-fast processing speeds, comprehensive analysis tools, and security research capabilities, gSort Professional delivers insights that would be impossible to extract manually.
 
 ## 🚀 Features
 
@@ -25,25 +25,25 @@ gSort Professional is a specialized tool for data analysts and researchers who n
 - Email provider statistics
 - Password complexity heatmaps
 
-## 🔧 Installation
+## 🔬 Research Features
 
-### Option 1: Executable Installer (Recommended)
+- **Password Evolution Simulator**: Generate evolved password sets based on research into how real users change passwords
+- **Security Analysis**: Comprehensive assessment of password security across datasets
+- **Pattern Recognition**: Advanced algorithms to identify common patterns and weaknesses
 
-Download the latest installer from the [releases page](https://github.com/krackn88/gsort-professional/releases) and run it.
+### Password Evolution Simulator
 
-### Option 2: From Source
+Our revolutionary Password Evolution Simulator is based on extensive research into how users typically modify their passwords when prompted to change them. The simulator applies realistic patterns:
 
-```bash
-# Clone the repository
-git clone https://github.com/krackn88/gsort-professional.git
+- **Incremental Changes** (70-80% of users): Adding or incrementing numbers, changing a single character
+- **Seasonal/Temporal Patterns** (15-20% of users): Adding month/year or seasonal references
+- **Character Substitution** (40-50% of users): Changing letters to similar-looking numbers/symbols
+- **Structure Preservation** (80-90% of users): Maintaining the same basic structure and length
 
-# Install dependencies
-cd gsort-professional
-pip install -r requirements.txt
-
-# Run the application
-python main.py
-```
+This feature is invaluable for:
+- Security researchers testing password policies
+- Creating realistic test datasets for authentication systems
+- Understanding user behavior and improving security guidance
 
 ## 🖥️ System Requirements
 
@@ -74,7 +74,7 @@ gSort Professional is available under a commercial license. Contact for licensin
 
 ![Main Interface](resources/images/screenshot_main.png)
 ![Analytics Dashboard](resources/images/screenshot_analytics.png)
-![Domain Analysis](resources/images/screenshot_domains.png)
+![Password Evolution Simulator](resources/images/screenshot_evolution.png)
 
 ---
 
