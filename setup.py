@@ -51,8 +51,7 @@ setup(
     ],
     python_requires='>=3.8',
     install_requires=[
-        'PyQt6>=5.15.9',
-        'PySide6>=6.5.0',
+        'PyQt6>=6.5.0',
         'pandas>=2.0.0',
         'numpy>=1.24.0',
         'matplotlib>=3.7.1',
