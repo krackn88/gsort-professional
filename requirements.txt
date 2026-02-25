@@ -1,5 +1,5 @@
 # Core dependencies
-PyQt6>=5.15.9
+PyQt6>=6.5.0
 pandas>=2.0.0
 numpy>=1.24.0
 matplotlib>=3.7.1
@@ -32,3 +32,4 @@ python-dateutil>=2.8.2
 pyinstaller>=5.10.1  # For creating standalone executables
 pytest>=7.3.1       # For testing
 black>=23.3.0       # For code formatting
+pylint>=2.17.4      # For linting
